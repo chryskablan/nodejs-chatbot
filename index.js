@@ -5,7 +5,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 let app = express();
 app.use(bodyParser.json());
@@ -15,15 +15,13 @@ app.get('/', function(req, res) {
     res.send('Bonjour !');
 });
 
-app.get('/hello', function(req, res) {
-    let responseText = 'Quel est votre nom ?';    
+app.get('/hello', function(req, res) {    
     const nom = req.query.nom;
 
     if(nom !== undefined && nom !==  null){
-        responseText = 'Bonjour, '+nom+' !';
+        res.send('Bonjour, '+nom+' !'); 
     }
-
-    res.send(responseText);
+    res.send('Quel est votre nom ?');
 });
 
 app.post('/chat', function(req, res){
